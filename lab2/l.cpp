@@ -31,6 +31,7 @@ int maxsum(Node* head) {
 
         
     }
+    return max_sum;
 }
 
 int main() {
@@ -40,7 +41,6 @@ int main() {
     Node* head = nullptr;
     Node* tail = nullptr;
 
-    int count = 0;
 
     for(int i = 0; i < n; i++) {
         int x;
@@ -48,17 +48,16 @@ int main() {
 
         Node* newNode = new Node(x);
         if(head == nullptr) {
-            newNode = newNode;
             head = newNode;
-        }
-        else {
-            newNode->next = head;
             tail = newNode;
         }
-        count += newNode->data;
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
 
     }
-    cout << maxsum << endl;
+    cout << maxsum(head) << endl;
     
 
     return 0;
