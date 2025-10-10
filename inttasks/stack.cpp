@@ -19,7 +19,6 @@ class stack {
     Node *top;
     stack() {
         top = nullptr;
-        
     }
 
     void push(int val) {
