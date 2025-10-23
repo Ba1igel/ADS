@@ -29,6 +29,7 @@ Node* find(Node* root, int targ) {
 int sbsizze(Node*root){
     if (!root) return 0;
     return 1 + sbsizze(root->left) + sbsizze(root->right);  
+    // получаетсся текущий узел плюсь количество узлоыв и всио идет рекурсивно 
 
 }
 int main () {

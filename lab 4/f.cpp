@@ -1,6 +1,6 @@
     #include <iostream>
  
-
+//каншаунда екы баласы бар 
     using namespace std;
 
     struct Node {

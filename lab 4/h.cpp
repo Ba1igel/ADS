@@ -18,7 +18,7 @@ Node* insert(Node* root, int val) {
 }
 
 int sum = 0;
-void transform(Node* root) {
+void transform(Node* root) { // обход справа на ево большого к маленкому
     if (!root) return;
     transform(root->right);
     sum += root->val;

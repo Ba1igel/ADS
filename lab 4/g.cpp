@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
+using namespace std; // самый длинный путь в саб трии точнее между двумя узлами 
 
 struct Node{
     int val;

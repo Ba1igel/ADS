@@ -16,7 +16,7 @@ int main() {
     cin >> n >> q;
     vector<int> v(n);
 
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {    
         cin >> v[i];
     }
 

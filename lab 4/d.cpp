@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+//сумма уровней     
 struct Node {
     int val;
     Node* left;

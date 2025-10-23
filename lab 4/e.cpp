@@ -23,7 +23,7 @@ Node* insert(Node*& root, int val, int level, vector<int>& levelc, int& maxl) {
     }
     if(val < root->val)
         insert(root->left, val, level + 1, levelc, maxl);
-    
+    // рекурсивный поиск типо ышынде ищем левел + 1 аркылы
     else if(val > root->val)
         insert(root->right, val, level + 1, levelc, maxl);
     return root;
@@ -37,7 +37,6 @@ int main()
     cin >> n;
     vector<int> a(n);
     for (int& x : a) cin >> x;
-
     Node* root = nullptr;
     int maxlevel = 0;
     vector<int> levelc;
