@@ -9,15 +9,11 @@ struct Node {
     Node(int v): val(v), left(nullptr), right(nullptr) {}
 };
 Node* insert(Node*& root, int val, int level, vector<int>& levelsum, int& maxl) {
-    if(!root) {
-        root = new Node(val);
-        if(level >= levelsum.size()) {
-            levelsum.resize(level + 1);
-        }
-        levelsum[level] += val;
-        maxl = max(maxl, level);
-        return root;
+    if(!root) return root;
+    if(level >= levelsum.size()) {
+        levelsum.resize(level + 1);
     }
+    levelsum[level] += val;
     if(val < root->val)
         insert(root->left, val, level + 1, levelsum, maxl);
     else
