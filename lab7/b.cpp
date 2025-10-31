@@ -1,16 +1,15 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-
 void quick_sort(vector<int>& a, int l, int r) {
     int p = a[(l + r) / 2];
     int i = l;
     int j = r;
 
 
-    while(i <= j) {
+    while(i < j) {
         while(a[i] < p) i++;
         while(a[j] > p) j--;
+
 
         if(i <= j) {
             swap(a[i], a[j]);
@@ -27,19 +26,22 @@ void quick_sort(vector<int>& a, int l, int r) {
 }
 
 int main() {
-    int n;
+    int n, k;
     cin >> n;
     vector<int> a(n);
-    for (int i = 0; i < n; i++) {
+    vector<int> l;
+    for(int i = 0; i < n; i++) {
         cin >> a[i];
+        l.push_back(a[i]);
     }
-    quick_sort(a, 0, n - 1);
-
-    cout << "Sorted array:   ";
-    for (int i = 0; i < n; i++) {
-        cout << a[i] << " ";
+    cin >> k;
+    vector<int> b(k);
+    for(int j = 0; j < k; j++) {
+        cin >> b[j];
+        l.push_back(b[j]);
     }
-    cout << endl;
-    return 0;
-    
+    quick_sort(l, 0, l.size() - 1);
+    for(int j = 0; j < l.size(); j++) {
+        cout << l[j] << " ";
+    }
 }

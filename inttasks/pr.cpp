@@ -1,13 +1,10 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-void quick_sort(vector<int>& a, int l, int r) {
+void qs(vector<int>& a, int l, int r){
     int p = a[(l + r) / 2];
     int i = l;
     int j = r;
-
-
     while(i <= j) {
         while(a[i] < p) i++;
         while(a[j] > p) j--;
@@ -17,12 +14,13 @@ void quick_sort(vector<int>& a, int l, int r) {
             i++;
             j--;
         }
+
     }
     if(l < j) {
-        quick_sort(a, l, j);
+        qs(a, l, j);
     }
     if(i < r) {
-        quick_sort(a, i, r);
+        qs(a, i, r);
     }
 }
 
@@ -30,16 +28,25 @@ int main() {
     int n;
     cin >> n;
     vector<int> a(n);
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++){
         cin >> a[i];
     }
-    quick_sort(a, 0, n - 1);
+    qs(a, 0, n - 1);
+    int target;
+    cin >> target;
 
-    cout << "Sorted array:   ";
-    for (int i = 0; i < n; i++) {
+
+    int index = 0;
+    for(int i = 0; i < n; i++) {
+        if(target == a[i]){
+            index = i;
+            break;
+        }
+
+    }
+    
+    cout << index + 1 << endl;
+    for(int i = 0; i < n; i++){
         cout << a[i] << " ";
     }
-    cout << endl;
-    return 0;
-    
 }

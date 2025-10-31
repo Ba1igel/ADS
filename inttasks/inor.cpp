@@ -1,19 +1,17 @@
 #include <iostream>
 using namespace std;
 
-class Node{
+class Node {
     public:
     int data;
     Node* left;
     Node* right;
-    Node(int val){
+    Node(int val) {
         data = val;
         left = nullptr;
         right = nullptr;
     }
-
 };
-
 
 
 Node* insert(Node* root, int val) {
