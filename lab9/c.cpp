@@ -14,8 +14,7 @@ vector<int> prefix_function(string &s) {
     }
     return pi;
 }
-
-int main() {
+int main                                      () {
     string a, b;
     cin >> a >> b;
 
