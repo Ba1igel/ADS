@@ -1,53 +1,64 @@
 #include <iostream>
 #include <queue>
+#include <vector>
+#include <climits>
 using namespace std;
 
-const int MAXN = 1000;
-int adj[MAXN][MAXN]; 
-int m, n;            
-int mushrooms = 0;
-
-int dx[] = {-1, 1, 0, 0}; 
-int dy[] = {0, 0, -1, 1};
-
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int m, n;
     cin >> m >> n;
+
+    vector<vector<int>> grid(m + 1, vector<int>(n + 1));
+    vector<vector<int>> dist(m + 1, vector<int>(n + 1, INT_MAX));
+
     queue<pair<int, int>> q;
 
-    for (int i = 0; i < m; ++i)
-        for (int j = 0; j < n; ++j) {
-            cin >> adj[i][j];
-            if (adj[i][j] == 2) q.push({i, j}); // стар товые позиции Mario
-            if (adj[i][j] == 1) mushrooms++;    // считаем грибы
-        }
+    int totalFresh = 0; 
+    int converted = 0;
+    int answer = 0;
 
-    if (mushrooms == 0) {
-        cout << 0 << endl;
-        return 0;
-    }
-
-    int minutes = 0;
-    while (!q.empty()) {
-        int sz = q.size();
-        while (sz--) {
-            auto [x, y] = q.front(); q.pop();
-            for (int d = 0; d < 4; ++d) {
-                int nx = x + dx[d], ny = y + dy[d];
-                if (nx < 0 || ny < 0 || nx >= m || ny >= n) continue;
-                if (adj[nx][ny] == 1) {
-                    adj[nx][ny] = 2;
-                    mushrooms--;
-                    q.push({nx, ny});
-                }
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> grid[i][j];
+            if (grid[i][j] == 2) {
+                q.push({i, j});
+                dist[i][j] = 0;
+            } else if (grid[i][j] == 1) {
+                totalFresh++;
             }
         }
-        minutes++;
-        if (mushrooms == 0) {
-            cout << minutes << endl;
-            return 0;
+    }
+
+    const int dirs[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
+
+    while (!q.empty()) {
+        auto cur = q.front();
+        q.pop();
+
+        int x = cur.first;
+        int y = cur.second;
+
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dirs[k][0];
+            int ny = y + dirs[k][1];
+
+            if (nx >= 1 && nx <= m && ny >= 1 && ny <= n && grid[nx][ny] == 1) {
+                grid[nx][ny] = 2;
+                dist[nx][ny] = dist[x][y] + 1;
+                answer = max(answer, dist[nx][ny]);
+                converted++;
+                q.push({nx, ny});
+            }
         }
     }
 
-    cout << -1 << endl;
+    if (converted == totalFresh)
+        cout << answer;
+    else
+        cout << -1;
+
     return 0;
 }
